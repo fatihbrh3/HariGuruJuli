@@ -1,0 +1,14 @@
+TARUH LAGU ROMANTIS DI FOLDER INI!
+
+Cara pakai:
+1. Masukkan 1 file lagu (disarankan format .mp3) ke dalam folder ini:
+   c:\Anti Gravity\HariGuruJuli\assets\lagu\
+
+2. Ubah nama file lagunya menjadi:
+   lagu.mp3
+
+Catatan:
+- Jika nama file lagunya berbeda atau formatnya .m4a / .ogg / .wav, buka file js/config.js lalu ubah bagian `file: "assets/lagu/lagu.mp3"`.
+- Kamu juga bisa mengganti judul lagu dan nama penyanyinya di js/config.js agar tampil rapi di pemutar musik.
+- Kamu juga bisa menghapus file teks ini kapan saja.
+

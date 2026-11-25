@@ -1,0 +1,18 @@
+TARUH FOTO-FOTO KALIAN DI FOLDER INI!
+
+Cara pakai:
+1. Masukkan file foto (format .jpg, .jpeg, .png, atau .webp) ke dalam folder ini:
+   c:\Anti Gravity\HariGuruJuli\assets\foto\
+
+2. Ubah nama file foto menjadi:
+   - foto1.jpg
+   - foto2.jpg
+   - foto3.jpg
+   - foto4.jpg
+   - foto5.jpg
+   - foto6.jpg
+
+Catatan:
+- Jika format foto kamu .png atau .jpeg (bukan .jpg), atau ingin menambah/mengurangi jumlah foto, buka file js/config.js lalu ubah nama filenya di bagian daftar `foto`.
+- Kamu juga bisa menghapus file teks ini kapan saja.
+

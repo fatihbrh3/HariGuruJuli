@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Selamat Hari Guru — Cikgu Juli Tersayang 🌸</title>
+  <link rel="icon" type="image/svg+xml" href="assets/icon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <!-- Kanvas kelopak bunga jatuh di latar belakang -->
+  <canvas id="petals-canvas" aria-hidden="true"></canvas>
+
+  <!-- Layar Amplop Pembuka -->
+  <div id="intro-overlay" class="intro-overlay" role="dialog" aria-modal="true" aria-label="Pembuka Ucapan Hari Guru">
+    <div class="intro-card">
+      <div class="envelope-visual" aria-hidden="true">
+        <div class="envelope-back"></div>
+        <div class="envelope-letter">
+          <span class="mini-apple">🍎</span>
+          <span class="mini-line"></span>
+          <span class="mini-line short"></span>
+        </div>
+        <div class="envelope-flap"></div>
+        <div class="wax-seal">🌸</div>
+      </div>
+      <p class="intro-badge" id="intro-badge">Selamat Hari Guru Nasional</p>
+      <h1 class="intro-title">Ada Surat &amp; Bunga Digital Untuk <span id="intro-name">Cikgu Juli Tersayang</span></h1>
+      <p class="intro-subtitle">Ketuk tombol di bawah untuk membuka ucapan spesial dan memutar musik.</p>
+      <button id="open-gift-btn" class="btn-primary btn-lg" type="button">
+        <span>Buka Hadiah Hari Guru</span>
+        <span aria-hidden="true">💌</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Navigasi Atas -->
+  <header class="site-header">
+    <nav class="nav-pill" aria-label="Navigasi Utama">
+      <a href="#beranda" class="nav-brand">🌸 Hari Guru</a>
+      <div class="nav-links">
+        <a href="#taman-bunga">Bunga Digital</a>
+        <a href="#penghargaan">Apresiasi</a>
+        <a href="#galeri">Galeri</a>
+        <a href="#surat">Surat Cinta</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="beranda" class="hero-section">
+      <div class="container hero-grid">
+        <div class="hero-text reveal">
+          <div class="teacher-pill">
+            <span aria-hidden="true">🍎</span>
+            <span id="hero-label">Selamat Hari Guru Nasional • 25 November</span>
+          </div>
+          <h1 class="hero-title" id="hero-title">Untukmu, Cikgu Juli Paling Hebat di Hatiku</h1>
+          <p class="hero-subtitle" id="hero-subtitle">
+            Terima kasih sudah menjadi cahaya ilmu bagi murid-muridmu, sekaligus menjadi alasan bahagiaku setiap hari.
+          </p>
+          <div class="hero-actions">
+            <a href="#taman-bunga" class="btn-primary">Mekarkan Bunga Digital 🌷</a>
+            <a href="#surat" class="btn-secondary">Baca Surat Untukmu ✉️</a>
+          </div>
+          <div class="hero-teacher-motifs" aria-hidden="true">
+            <span class="motif-chip">📚 Mengajar dengan Hati</span>
+            <span class="motif-chip">🎀 Pahlawan Tanpa Tanda Jasa</span>
+            <span class="motif-chip">💕 Kesayanganku</span>
+          </div>
+        </div>
+
+        <!-- Buket Bunga Digital SVG Animasi -->
+        <div class="hero-bouquet-wrap reveal">
+          <div class="bouquet-glow" aria-hidden="true"></div>
+          <div id="hero-bouquet" class="hero-bouquet" title="Klik bunga untuk pesan manis!">
+            <!-- Diisi otomatis oleh js/flowers.js -->
+          </div>
+          <p class="bouquet-hint">✨ Ketuk buket bunga di atas untuk pesan manis</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Taman Bunga Digital Interaktif -->
+    <section id="taman-bunga" class="section garden-section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">🌸 Taman Bunga Digital</span>
+          <h2>Sentuh Layar untuk Menumbuhkan Bunga</h2>
+          <p>
+            Setiap ketukan di taman ini akan menumbuhkan bunga pink digital khusus untukmu—beserta pesan kecil tanda
+            terima kasihku.
+          </p>
+        </div>
+
+        <div class="garden-stage-card reveal">
+          <div class="garden-toolbar">
+            <div class="flower-counter">
+              Bunga Mekar: <strong id="flower-count">0</strong> 🌺
+            </div>
+            <div class="garden-buttons">
+              <button id="bloom-burst-btn" class="btn-primary btn-sm" type="button">
+                ✨ Mekarkan 7 Bunga
+              </button>
+              <button id="clear-garden-btn" class="btn-ghost btn-sm" type="button">
+                Tanam Ulang
+              </button>
+            </div>
+          </div>
+
+          <div class="garden-canvas-wrap">
+            <canvas id="garden-canvas" aria-label="Kanvas taman bunga digital interaktif"></canvas>
+            <div id="garden-prompt" class="garden-prompt">
+              Klik atau ketuk area pink ini untuk menanam bunga digital 🌸
+            </div>
+          </div>
+
+          <!-- Toast Pesan Bunga -->
+          <div id="flower-note-box" class="flower-note-box" aria-live="polite">
+            <span class="note-icon" aria-hidden="true">💌</span>
+            <p id="flower-note-text">Ketuk bunga atau taman di atas untuk membuka pesan spesial Hari Guru!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Nuansa Hari Guru: Papan Apresiasi & Sertifikat Cinta -->
+    <section id="penghargaan" class="section teacher-section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">📚 Nuansa Hari Guru</span>
+          <h2>Terima Kasih, Cikgu Juli Kesayanganku</h2>
+          <p>Sebuah penghargaan kecil untuk ketulusanmu mendidik generasi masa depan dengan penuh sabar.</p>
+        </div>
+
+        <div class="teacher-grid">
+          <!-- Kartu Papan Tulis Nuansa Pink Lembut -->
+          <article class="chalkboard-pink-card reveal">
+            <div class="chalk-header">
+              <span class="chalk-doodle" aria-hidden="true">✏️ Hari Guru</span>
+              <span class="chalk-date">25 Nov</span>
+            </div>
+            <h3>Catatan Kecil di Papan Kelas</h3>
+            <ul class="teacher-qualities">
+              <li>
+                <span class="q-icon" aria-hidden="true">🌷</span>
+                <div>
+                  <strong>Sabar Tanpa Batas</strong>
+                  <p>Selalu menjawab pertanyaan murid dengan senyum paling lembut.</p>
+                </div>
+              </li>
+              <li>
+                <span class="q-icon" aria-hidden="true">📖</span>
+                <div>
+                  <strong>Mengajar Sepenuh Hati</strong>
+                  <p>Tidak hanya berbagi ilmu, tapi juga menanamkan kebaikan dan keberanian.</p>
+                </div>
+              </li>
+              <li>
+                <span class="q-icon" aria-hidden="true">🎀</span>
+                <div>
+                  <strong>Inspirasi Setiap Hari</strong>
+                  <p>Ketekunan dan dedikasimu selalu bikin aku bangga punya kamu.</p>
+                </div>
+              </li>
+            </ul>
+          </article>
+
+          <!-- Sertifikat Penghargaan Guru Terbaik -->
+          <article class="certificate-card reveal">
+            <div class="cert-ribbon" aria-hidden="true">🏅</div>
+            <p class="cert-top">PIAGAM PENGHARGAAN SPESIAL</p>
+            <h3 class="cert-title">Guru Terbaik &amp; Pacar Tersayang</h3>
+            <p class="cert-given">Diberikan dengan penuh cinta kepada:</p>
+            <p class="cert-recipient" id="cert-recipient">Cikgu Juli Tersayang</p>
+            <p class="cert-body">
+              Atas kesabaran luar biasa di ruang kelas, senyum yang tak pernah pudar meski lelah, serta cinta yang
+              selalu hangat setiap waktu.
+            </p>
+            <div class="cert-footer">
+              <div>
+                <span class="cert-sign-label">Diterbitkan pada</span>
+                <strong>Hari Guru Nasional</strong>
+              </div>
+              <div class="cert-seal" aria-hidden="true">🌸<br />100%<br />TERBAIK</div>
+              <div>
+                <span class="cert-sign-label">Dari Penggemar Beratmu</span>
+                <strong id="cert-sender">Laud 🌊🐚🐬</strong>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Galeri Kenangan -->
+    <section id="galeri" class="section gallery-section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">📸 Galeri Kenangan</span>
+          <h2>Momen Indah Bersamamu</h2>
+          <p>Klik foto untuk melihat lebih jelas kenangan manis kita.</p>
+        </div>
+
+        <div id="gallery-grid" class="gallery-grid">
+          <!-- Kartu foto diisi otomatis oleh js/main.js dari js/config.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Surat Cinta Hari Guru -->
+    <section id="surat" class="section letter-section">
+      <div class="container">
+        <article class="letter-paper reveal">
+          <div class="washi-tape top-left" aria-hidden="true"></div>
+          <div class="washi-tape top-right" aria-hidden="true"></div>
+
+          <div class="letter-header">
+            <span class="letter-stamp" aria-hidden="true">🍎🌸</span>
+            <p class="letter-tag">Surat Ucapan Hari Guru</p>
+          </div>
+
+          <h2 class="letter-greeting" id="letter-greeting">Untuk Sayangku, Cikgu Juli Tercinta,</h2>
+
+          <div id="letter-body" class="letter-body">
+            <!-- Isi surat diisi dari js/config.js -->
+          </div>
+
+          <div class="letter-signature">
+            <p id="letter-closing">Dengan penuh cinta dan rasa bangga,</p>
+            <p class="signature-name" id="letter-sender">Laud 🌊🐚🐬</p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Dibuat dengan penuh cinta untuk merayakan Hari Guru 🌸 • <span id="footer-names">Untuk Cikgu Juli
+        Tersayang</span></p>
+  </footer>
+
+  <!-- Pemutar Musik Mengambang -->
+  <aside id="music-player" class="music-player" aria-label="Pemutar Musik Latar">
+    <button id="music-toggle-btn" class="music-disc-btn" type="button" aria-label="Putar atau jeda musik">
+      <span class="vinyl-disc" id="vinyl-disc" aria-hidden="true">🎵</span>
+    </button>
+    <div class="music-meta">
+      <div class="music-title-row">
+        <strong id="music-title">Lagu Spesial Untukmu</strong>
+      </div>
+      <small id="music-status">Ketuk tombol untuk putar lagu</small>
+      <div class="music-progress-track" aria-hidden="true">
+        <div id="music-progress-bar" class="music-progress-bar"></div>
+      </div>
+    </div>
+    <audio id="bg-audio" preload="metadata" loop></audio>
+  </aside>
+
+  <!-- Modal Lightbox Foto -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Pratinjau Foto">
+    <button id="lightbox-close" class="lightbox-close" type="button" aria-label="Tutup foto">✕</button>
+    <div class="lightbox-content">
+      <img id="lightbox-img" src="" alt="" />
+      <p id="lightbox-caption"></p>
+    </div>
+  </div>
+
+  <!-- Scripts (tanpa type="module" agar tetap lancar jika file HTML dibuka langsung) -->
+  <script src="js/config.js"></script>
+  <script src="js/flowers.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>
